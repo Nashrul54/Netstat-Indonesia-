@@ -157,9 +157,9 @@ const highest=ranked[0], lowest=ranked[ranked.length-1];
 document.getElementById("conclusion").innerHTML=`Dari ${n} provinsi, rata-rata median kecepatan download internet seluler adalah <b>${fmt(mean)} Mbps</b> dan median keseluruhan adalah <b>${fmt(med)} Mbps</b>. Provinsi dengan nilai tertinggi pada dataset adalah <b>${highest[0]} (${fmt(highest[1])} Mbps)</b>, sedangkan yang terendah adalah <b>${lowest[0]} (${fmt(lowest[1])} Mbps)</b>. Standar deviasi populasi sebesar <b>${fmt(sd)} Mbps</b> menunjukkan adanya variasi kecepatan antarprovinsi.`;
 
 function downloadCSV(){
- let csv="No,Provinsi,Median Download (Mbps)\\n";
- data.forEach((x,i)=>csv+=`${i+1},"${x[0]}",${x[1]}\\n`);
- const blob=new Blob([csv],{type:"text/csv;charset=utf-8;"});
+ let csv="No,Provinsi,Median Download (Mbps)\n";
+ data.forEach((x,i)=>csv+=`${i+1},"${x[0]}",${x[1]}\n`);
+ const blob=new Blob(["\uFEFF"+csv],{type:"text/csv;charset=utf-8;"});
  const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="dataset-kecepatan-internet-indonesia-2025.csv";a.click();URL.revokeObjectURL(a.href);
 }
 </script>
